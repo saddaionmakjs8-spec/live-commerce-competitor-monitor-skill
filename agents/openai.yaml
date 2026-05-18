@@ -1,0 +1,7 @@
+interface:
+  display_name: "直播竞品监看"
+  short_description: "长时间采集直播竞品，并输出中文交付目录"
+  default_prompt: "Use $live-commerce-competitor-monitor to monitor a competitor live room and produce a Chinese delivery folder with recording, transcript, screenshots, structured data, speech analysis, traffic, engagement, and order-signal data."
+
+policy:
+  allow_implicit_invocation: true
