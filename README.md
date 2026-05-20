@@ -9,6 +9,7 @@
 - 画面变化截图
 - 在线人数、点赞、评论、商品卡、下单信号等时间序列
 - 话术、场景变化、商品切换和转化信号之间的关系假设
+- 本地 HTML 可视化看板
 
 ## 使用方式
 
@@ -42,6 +43,7 @@
 - `references/analysis-method.md`：话术、场景、指标关系的分析方法。
 - `scripts/build_delivery_package.py`：整理交付文件夹。
 - `scripts/build_live_report.py`：根据结构化数据生成分析报告。
+- `scripts/build_html_dashboard.py`：把交付目录生成可直接打开的本地 HTML 看板。
 
 ## Skill ID
 

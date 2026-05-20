@@ -1,6 +1,6 @@
 ---
 name: live-commerce-competitor-monitor
-description: Long-duration live-commerce competitor monitoring and analysis. Use when the user wants to watch a competitor livestream, especially Douyin/TikTok Shop or Chinese e-commerce live rooms, and produce a user-friendly Chinese delivery folder with recording, transcript, screenshots, structured data, sales speech, viewer count, engagement, comments, product-card changes, order signals, and conversion hypotheses.
+description: Long-duration live-commerce competitor monitoring, analysis, and delivery visualization. Use when the user wants to watch a competitor livestream, especially Douyin/TikTok Shop or Chinese e-commerce live rooms, and produce a user-friendly Chinese delivery folder with recording, transcript, screenshots, structured data, sales speech, viewer count, engagement, comments, product-card changes, order signals, conversion hypotheses, or a local HTML dashboard for the live-monitor results.
 ---
 
 # Live Commerce Competitor Monitor
@@ -162,6 +162,7 @@ The delivery folder root must follow this shape:
 ├── 04_关键截图/
 ├── 05_话术分析报告.md
 ├── 06_截图索引图.jpg
+├── 07_直播分析可视化看板.html
 └── _internal_技术底稿/
 ```
 
@@ -178,6 +179,7 @@ The final answer should link the delivery folder first and summarize:
 7. `关系分析`: which speech types appear closest to viewer growth, comment bursts, and order signals.
 8. `竞品打法判断`: their live-room operating model, not just individual phrases.
 9. `我们可以借鉴/不要照搬`: specific reusable tactics and risks.
+10. `可视化看板`: if an HTML dashboard was requested or useful, link `07_直播分析可视化看板.html`.
 
 When the user asks for data files, provide the user-facing Excel files first. Provide CSV/JSONL only if they explicitly ask for technical source data.
 
@@ -201,3 +203,35 @@ python .codex/skills/live-commerce-competitor-monitor/scripts/build_delivery_pac
 ```
 
 The delivery script creates the Chinese user-facing folder, copies/renames evidence, generates the transcript workbook and structured-data workbook, writes Markdown summaries, and moves technical artifacts into `_internal_技术底稿`.
+
+## HTML Dashboard Script
+
+When the user asks to present the monitoring result as HTML, or when the delivery should be more readable than Markdown/Excel alone, run:
+
+```bash
+python .codex/skills/live-commerce-competitor-monitor/scripts/build_html_dashboard.py \
+  --delivery-dir output/live-monitor/账号_直播分析_YYYY-MM-DD_时长 \
+  --mode auto
+```
+
+The script generates `07_直播分析可视化看板.html` in the delivery root.
+
+Useful arguments:
+
+- `--mode auto|inline|local-js`: default `auto`.
+- `--inline-threshold-kb`: auto-mode threshold for structured JSON data, default 180KB.
+- `--media-threshold-mb`: auto-mode threshold for local evidence files such as recording and screenshots, default 50MB.
+- `--out`: custom HTML output path.
+- `--title`: custom dashboard title.
+
+Data mode rules:
+
+- `inline`: embed structured JSON data directly in the HTML.
+- `local-js`: write `_internal_技术底稿/html_data/直播分析数据.js` and let the HTML load that local file.
+- `auto`: use `inline` only when both structured data and local evidence files are small; otherwise use `local-js`.
+
+Do not embed large recordings or screenshots as base64. The HTML should reference existing local video, screenshot, transcript, and workbook files by relative path. If the user wants to send the dashboard to someone else, tell them to send the whole delivery folder, not just the HTML file.
+
+After generating the dashboard, verify that the page loads KPI cards, timeline events, screenshots, and speech modules. If Playwright is available, use local Chrome or the in-app browser to render-check the file. If a data category is missing, the page should show `暂无数据` instead of failing.
+
+For field expectations and fallback behavior, read `references/html-dashboard.md`.
