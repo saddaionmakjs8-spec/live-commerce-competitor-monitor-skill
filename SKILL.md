@@ -15,15 +15,30 @@ What sales speech and live-room actions appear before, during, or after changes 
 
 For long monitoring, prefer the local Douyin app or mobile mirror over browser pages. Browser live rooms are acceptable only for short probes or when app access is unavailable.
 
-## First Decision
+## Fast-Start Order
 
-1. Confirm the platform, account, target live room, and intended monitoring duration.
-2. Run every real monitoring task for at least 10 minutes. A shorter run is only a technical pilot, not a competitor analysis.
-3. Use complete app-window recording from the start of monitoring until the stop condition is met. Screenshots are evidence bookmarks, not a replacement for recording.
-4. If the task is longer than 10 minutes, use `references/local-douyin-capture.md`.
-5. If the user asks for a one-off browser check, still collect data using the same schema in `references/data-schema.md`.
-6. Before any real run, do a 30-60 second pilot and verify that the captured video shows only the target app/window area, comments, metrics, product cards, and audio are actually captured.
-7. If complete spoken speech matters, do not start a formal run until audio capture and transcription are verified. Visible text is not a substitute for a transcript.
+Optimize for getting valid evidence first. Do not spend the beginning of a live-room task doing long analysis, long setup notes, or full report planning while the stream is moving.
+
+1. Confirm only the minimum run brief: target account/live room, platform, requested duration, and whether audio transcript is required.
+2. Start a technical probe as soon as the target live-room window/region is visible. Aim to begin within 30 seconds after the target is available.
+3. Keep the probe recording to 5 seconds or less. Use it only to verify target scope, non-black video, audio route when required, and screenshot crop. Do not use the probe for business judgment.
+4. If the 5-second probe fails, stop quickly, mark the failed file as setup evidence, fix the issue, and restart. If it passes, immediately start or continue the formal run. If the formal recording already started, treat only its first 5 seconds as the probe window.
+5. Do not wait for loop judgment, full transcription confidence, complete product mapping, or analysis structure before recording. Judge those while recording or after the minimum duration is secured.
+6. Run every real monitoring task for at least 10 minutes of valid recording. A shorter run is only a technical pilot, not a competitor analysis.
+7. If the task is longer than 10 minutes, use `references/local-douyin-capture.md`.
+8. If the user asks for a one-off browser check, still collect data using the same schema in `references/data-schema.md`.
+
+## Parallel Work During Recording
+
+Once recording has started, split the work into concurrent tracks:
+
+- Evidence track: keep full recording running, capture event-driven screenshots, and log recording chunks.
+- Observation track: sample online viewers, hot-sale/sold counts, likes/popularity, product cards, comments, and order signals.
+- Speech track: mark rough time ranges for high-impact selling lines while audio is being recorded; exact transcript cleanup can happen after the run.
+- Judgment track: watch for loop markers, repeated product sequence, traffic spikes, comment bursts, and order-signal bursts. Do not stop early just because a possible loop appears.
+- Delivery track: after the minimum recording is secured, generate report CSVs, Chinese delivery folder, and HTML dashboard.
+
+Front-load only evidence capture. Move interpretation, relationship analysis, and packaging later unless they help decide whether recording is still valid.
 
 ## Capture Stack
 
@@ -92,12 +107,14 @@ Use `references/delivery-package.md` for the final user-facing folder. The deliv
 
 ## Formal Run Acceptance Gate
 
-A run is not a formal competitor-analysis sample unless all required checks pass:
+Evaluate the formal gate after the 5-second technical probe and again before final delivery. Do not delay recording just to complete this checklist upfront.
+
+A run is not a formal competitor-analysis sample unless all required checks pass or the limitation is explicitly marked:
 
 - `screen_scope=target_window_or_region`: the video and screenshots show the Douyin live room, not the operator's whole screen.
 - `recording_valid=true`: the video is playable, non-black, and duration is at least the requested minimum.
-- `audio_valid=true` when spoken speech or a transcript is required.
-- `transcript_valid=true` when the deliverable includes a word-for-word transcript.
+- `audio_valid=true` when spoken speech or a transcript is required; verify this as early as possible while recording, then fix/restart only if the transcript requirement would otherwise be impossible.
+- `transcript_valid=true` when the deliverable includes a word-for-word transcript; transcript cleanup can happen after recording.
 - `screenshots_valid=true`: screenshot filenames use recording timecode plus visible content and are taken only on material visual changes.
 - `evidence_delivered=true`: the final response links the recording, transcript, screenshots folder, events JSONL, and report folder.
 

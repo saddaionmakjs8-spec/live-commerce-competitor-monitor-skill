@@ -2,15 +2,17 @@
 
 Use this protocol for real monitoring runs. A run shorter than 10 minutes is only a technical pilot.
 
-## Setup
+## Fast Setup
+
+The default operating principle is: start usable recording first, then judge while recording. Do not spend several minutes pre-analyzing the room before evidence capture begins.
 
 1. Open the local Douyin app and navigate to the target live room.
 2. Fix the app window size and position. Avoid resizing during the run.
-3. Define the capture target before recording:
+3. Define the capture target quickly:
    - preferred: target app/window capture
    - acceptable: fixed screen region tightly cropped to the Douyin live-room window
    - not acceptable for formal runs: whole desktop/full display capture
-4. Save one pilot screenshot as `raw/capture-target-check.png`. It must show the Douyin live-room software view only. If it includes Codex, Terminal, Finder, browser chrome, desktop, or unrelated windows, fix the capture target before continuing.
+4. Save one pilot screenshot as `raw/capture-target-check.png` if it can be done immediately. It must show the Douyin live-room software view only. If it includes Codex, Terminal, Finder, browser chrome, desktop, or unrelated windows, fix the capture target quickly and start recording again.
 5. Make sure these areas are visible when possible:
    - live video and subtitle/burned-in text
    - online viewer count or room traffic number
@@ -18,13 +20,14 @@ Use this protocol for real monitoring runs. A run shorter than 10 minutes is onl
    - comments
    - product card/cart area
    - order or hot-sale popups
-6. Start a 30-60 second pilot recording before the real run.
-7. Verify:
+6. Start a technical probe recording. The probe must be 5 seconds or shorter; it is only for capture validity, not for business observation.
+7. During the 5-second probe, verify:
    - screen recording is not black
    - recording and screenshots are scoped to the target app/window or tight region
    - audio is present if speech analysis or a word-for-word transcript is required
    - screenshots are readable and not whole-desktop captures
    - comments and product cards are visible enough for OCR/manual transcription
+8. If the probe fails, stop, mark that file as setup evidence, fix the cause, and retry. If it passes, immediately start the formal run. If the formal recording has already started, treat only the first 5 seconds as the probe and continue without pausing.
 
 ## Complete Recording Requirement
 
@@ -35,6 +38,17 @@ Use this protocol for real monitoring runs. A run shorter than 10 minutes is onl
 - If recording fails, pause the analysis, restart recording, and mark the failed interval in `assumptions.md`.
 - Do not call a recording complete if it only captured the operator's desktop. Full-display capture can be kept as raw fallback evidence, but the formal recording must be the target live-room view.
 
+## Parallel Cadence While Recording
+
+Run these tracks at the same time:
+
+- Recording track: keep the target window/region recording continuously.
+- Screenshot track: capture material visual changes from the same target window/region.
+- Metrics track: sample online viewers and product hot-sale/sold counts on the normal cadence.
+- Speech track: mark rough high-impact speech windows during the live run; exact quote review can happen after recording.
+- Loop track: mark probable loop start/repeat points while continuing to record.
+- Notes track: keep assumptions and limitations timestamped, but do not pause recording to polish them.
+
 ## Audio
 
 macOS usually cannot capture system audio unless an audio route or recording tool supports it. If audio is required:
@@ -42,7 +56,7 @@ macOS usually cannot capture system audio unless an audio route or recording too
 - Prefer a known working screen recorder that captures app/system audio.
 - If using a virtual audio device, verify it with a pilot playback before the long run.
 - Do not use the built-in microphone for competitor analysis unless the user explicitly approves ambient capture.
-- If audio capture fails and a word-for-word transcript is required, stop before the formal run and mark the task blocked. Do not substitute visible comments or approximate paraphrase for the transcript.
+- If audio capture fails during the 5-second probe and a word-for-word transcript is required, stop early, mark the file as setup evidence, fix audio, and restart. Do not substitute visible comments or approximate paraphrase for the transcript.
 - If the user permits a no-audio observation run, continue with visible text, comments, product cards, and manual paraphrase; set `capture_quality.audio=missing` and `transcript_valid=false`.
 
 ### Tested Local Audio Route On This Mac
