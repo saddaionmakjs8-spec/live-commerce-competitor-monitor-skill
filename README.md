@@ -1,4 +1,4 @@
-# 直播竞品监控 Skill
+# 直播竞品盯播分析 Skill
 
 这是一个用于长期监控电商直播间的 Codex Skill，适合做抖音、TikTok Shop 或类似直播带货场景的竞品分析。
 
@@ -45,12 +45,16 @@
 - `scripts/build_live_report.py`：根据结构化数据生成分析报告。
 - `scripts/build_html_dashboard.py`：把交付目录生成可直接打开的本地 HTML 看板。
 
-## Skill ID
+## Skill 名称
 
-Codex 识别用的 skill id 保持为：
+Codex 识别用的 skill 名称为：
 
 ```text
-live-commerce-competitor-monitor
+直播竞品盯播分析
 ```
 
-中文名称用于仓库说明和用户理解，英文 id 用于保持工具兼容性。
+如果从 GitHub 安装，可以使用：
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --repo saddaionmakjs8-spec/live-commerce-competitor-monitor-skill --path . --name 直播竞品盯播分析
+```

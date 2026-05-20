@@ -1,9 +1,9 @@
 ---
-name: live-commerce-competitor-monitor
+name: 直播竞品盯播分析
 description: Long-duration live-commerce competitor monitoring, analysis, and delivery visualization. Use when the user wants to watch a competitor livestream, especially Douyin/TikTok Shop or Chinese e-commerce live rooms, and produce a user-friendly Chinese delivery folder with recording, transcript, screenshots, structured data, sales speech, viewer count, engagement, comments, product-card changes, order signals, conversion hypotheses, or a local HTML dashboard for the live-monitor results.
 ---
 
-# Live Commerce Competitor Monitor
+# 直播竞品盯播分析
 
 ## Purpose
 
@@ -188,7 +188,7 @@ When the user asks for data files, provide the user-facing Excel files first. Pr
 After collecting `events.jsonl`, run:
 
 ```bash
-python .codex/skills/live-commerce-competitor-monitor/scripts/build_live_report.py \
+python .codex/skills/直播竞品盯播分析/scripts/build_live_report.py \
   --events output/live-monitor/YYYY-MM-DD-account/events.jsonl \
   --out-dir output/live-monitor/YYYY-MM-DD-account/report
 ```
@@ -198,7 +198,7 @@ The script expects JSONL records following `references/data-schema.md`. It outpu
 Then build the delivery package:
 
 ```bash
-python .codex/skills/live-commerce-competitor-monitor/scripts/build_delivery_package.py \
+python .codex/skills/直播竞品盯播分析/scripts/build_delivery_package.py \
   --run-dir output/live-monitor/YYYY-MM-DD-account
 ```
 
@@ -209,7 +209,7 @@ The delivery script creates the Chinese user-facing folder, copies/renames evide
 When the user asks to present the monitoring result as HTML, or when the delivery should be more readable than Markdown/Excel alone, run:
 
 ```bash
-python .codex/skills/live-commerce-competitor-monitor/scripts/build_html_dashboard.py \
+python .codex/skills/直播竞品盯播分析/scripts/build_html_dashboard.py \
   --delivery-dir output/live-monitor/账号_直播分析_YYYY-MM-DD_时长 \
   --mode auto
 ```
